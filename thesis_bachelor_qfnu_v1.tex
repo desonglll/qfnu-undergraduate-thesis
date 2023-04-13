@@ -1,0 +1,442 @@
+\documentclass[UTF8,oneside,12pt]{article}  %--- 单面打印用oneside，双面打印就改为twoside
+                                                                        %--- 12pt对应中文字号小四号
+\usepackage{ctex}
+%--- 可以用下面一命令代替上面两行 -----------
+%\documentclass[UTF8,oneside,12pt]{ctexart}   %-------ctex + article=ctexart
+%-----------------------------------------------
+
+
+%------- 一些常用数学宏包 --------------------------
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts,amssymb}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{dsfont}
+%------------------------------------------------------
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=red]{hyperref}  %--- 超链接宏包
+\usepackage{cite}          %--- 引用宏包
+
+\usepackage{indentfirst}   %-- 首行缩进宏包
+\usepackage{array,tabularx}           %-- 列表宏包
+\usepackage{diagbox}      %-- 改宏包可用于制做有斜线表头的表格
+\usepackage{color}          %-- 颜色宏包
+\usepackage{graphicx}    %--- 插图宏包
+
+\usepackage{caption}      %--- 该宏包用来定制图表标题
+\captionsetup{font={footnotesize,bf}}  %-- 图表标题设置为小五号黑体
+
+
+%-------  geometry 宏包用来调整页面的页边距。默认的页面边距为A4标准。
+%\usepackage{geometry}
+
+%------  根据学校文件中的课程论文模板的实际情况，下面通过指定geometry 宏包的选项参数来自定义页面边距 ----------------
+\usepackage[
+  hoffset=5mm,%%装订线
+  left=2.5cm,      %% 左边距
+  right=2.5cm,     %% 右边距
+  top=2.5cm,       %% 上边距 包括页眉
+  bottom=2cm,    %% 下边距 包括页脚
+  headheight=0cm, %%页眉
+  footskip=1.0cm,  %% 页脚
+  paperwidth=21cm,
+  paperheight=29.7cm
+  ]{geometry}
+
+\def\baselinestretch{1}         %-- 行间距为1倍行间距
+%\setlength{\baselineskip}{20pt}  %-- 行间距为固定值20磅
+%\setlength{\parskip}{0.7ex plus0.3ex minus0.3ex} % 段落间距
+\allowdisplaybreaks[4]       %% 允许多行公式中间换页
+%--------------------------------
+
+
+
+%----------------------- 字体设置 ----------------------------------------
+\usepackage{fontspec}
+%\usepackage{xeCJK}             %--中文字体
+\usepackage{newtxtext}       %-- 设置文字部分的英文字体为 Times New Roman
+%\usepackage{newtxmath}    %-- 设置数学式中的英文字体为 Times New Roman
+%-----------------------------------------------
+%\setCJKmonofont{FZYTK.ttf}  %--方正姚体
+%\newcommand{\fangzhengyaoti}{\CJKfamily{FZYTK.ttf}}
+ \newcommand{\myfont}[1]{\setCJKfamilyfont{font}{#1}\CJKfamily{font}}
+
+
+%\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
+%\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoyihao}{\fontsize{24pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+%\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+%\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+%\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
+%\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+%-------------------------------------------------------------------------
+
+%---------------- 设置目录、标题 -------------------------------------
+\usepackage{titletoc,titlesec}
+
+\renewcommand{\contentsname}{{
+\begin{center}
+\sihao\heiti 目\ \ 录
+\end{center}
+}}
+\usepackage[titles]{tocloft}
+\renewcommand\cftsecdotsep{\cftdotsep}
+\renewcommand\cftsecleader{\cftdotfill{\cftsecdotsep}}
+
+\newcommand{\sectionname}{节}
+\titleformat{\section}[block]{\sihao\fangsong}{\thesection}{10pt}{}
+\titleformat{\subsection}[block]{\xiaosihao\heiti}{\thesubsection}{10pt}{}
+\titleformat{\subsubsection}[block]{\xiaosihao\fangsong}{\thesubsubsection}{10pt}{}
+%-- 下面设置各级标题左边以及与上下文内容的间距 ---
+\titlespacing{\section}{0pt}{0.6ex}{0.6ex}
+\titlespacing{\subsection}{0.5ex}{0.3ex}{0.3ex}
+\titlespacing{\subsubsection}{1ex}{0.3ex}{0.3ex}
+%------------------------------------------------------------------------
+
+
+
+%--------------- 设置定理环境 -----------------------------------------
+\newtheoremstyle{DingLi1}
+        {0.6ex plus 0.5ex minus .2ex}%上方的空行
+        {0.6ex plus 0.5ex minus .2ex}%下方的空行
+        {\kaishu}%内容字体
+        {}%缩进
+        {\heiti}%定理头部字体
+        {.}%定理头部后的标点
+        {1em}%定理头部后的空格
+        {}%定理头部的说明
+\theoremstyle{DingLi1}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{\hspace{2em}定理}[section]
+\newtheorem{definition}{\hskip 2em 定义}[section]
+\newtheorem{lemma}{\hskip 2em 引理}[section]
+\newtheorem{corollary}{\hskip 2em 推论}[section]
+\newtheorem{assumption}{\hskip 2em 条件}[section]
+\newtheorem{remark}{\hskip 2em 注}[section]
+\newtheorem{proposition}{\hskip 2em 命题}[section]
+\newtheorem{property}{\hskip 2em 性质}[section]
+
+\newtheoremstyle{DingLi2}
+        {1ex plus 0.5ex minus .2ex}%上方的空行
+        {1ex plus 0.5ex minus .2ex}%下方的空行
+        {\songti}%内容字体
+        {}%缩进
+        {\heiti}%定理头部字体
+        {.}%定理头部后的标点
+        {1em}%定理头部后的空格
+        {}%定理头部的说明
+\theoremstyle{DingLi2}
+\newtheorem{example}{\hskip 2em 例}[section]
+%---------------------------------------------------------------------
+
+%---------- 设置证明环境 ---------------------------------------------
+\makeatletter% amsthm: get rid of \itshape and \@addpunct{.}
+\renewenvironment{proof}[1][\proofname]{\par%
+\pushQED{\qed}%
+\normalfont \topsep6\p@\@plus6\p@\relax%
+\trivlist%
+\item[\hskip\labelsep%
+#1]\ignorespaces%
+}{%
+\popQED\endtrivlist\@endpefalse%
+}
+\makeatother
+\renewcommand{\proofname}{\heiti{证明}}%注意字体的设置
+%---------------------------------------------------------------------
+
+%-------------- 自定义命令 ------------------------------
+\def\d{\mathop{}\!\mathrm{d}} %-- 一阶微分符号d
+\def\l{\lambda}\def\L{\Lambda}
+\def\D{\Delta}
+\def\de{\delta}
+\def\gm{\gamma}
+\def\a{\alpha}
+\def\b{\beta}
+\def\div{{\rm div}}
+%---------------------------------------------------------
+
+\begin{document}
+%-----------  填写以下基本信息 -----------------------------
+\def\theTitle{论文题目}             %-- 论文标题 --
+\def\theEngTitle{English Title} %-- 论文英文标题 --
+\def\theMajor{数学与应用数学(师范)专业}      %-- 专业 --
+\def\theEnMajor{Mathematics and Applied Mathematics}  %-- 专业的英语翻译 --
+%--数学与应用数学 Mathematics and Applied Mathematics
+%--数学与应用数学（师范类） Mathematics and Applied Mathematics (Normal Education）
+%--数学与应用数学（公费师范生）Mathematics and Applied Mathematics (State-financed Normal Education）
+%--信息与计算科学 Information and Computation Science
+\def\theInstitution{数学科学学院}    %-- 院系 --
+\def\theNo{2015100013}  %-- 学号 --
+\def\theAuthor{张三}   %-- 作者姓名 --
+\def\theEnName{Zhang San}  %-- 作者姓名拼音
+\def\theTutor{李四}    %-- 指导教师姓名 --
+\def\theEnTutor{Li Si}  %-- 指导教师姓名拼音 ---
+\def\theProTitle{讲师}  %--- 指导教师职称 --
+
+\def\theDate{2019年5月15日} %--- 论文定稿时间 ---
+%-----------------------------------------------------------
+
+\include{cover/cover}   %-- 导入封面 --
+
+
+\vskip 2cm
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\pagestyle{plain}
+\setcounter{page}{1}
+
+
+\vskip 2cm
+\begin{center}
+\sanhao \heiti \theTitle
+\end{center}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+{\fangsong
+\begin{center}
+\theMajor  \quad \theAuthor
+\end{center}
+\begin{center}
+指导教师  \quad \theTutor
+\end{center}
+}
+%-----------  中英文摘要 -----------------------------------------------
+{\wuhao
+\addcontentsline{toc}{section}{摘要} %---- 将“摘要”加入到目录中 -----
+
+\noindent {\heiti 摘要}:
+摘要主要是说明研究工作的目的、方法、结果和结论.  语句要合乎逻辑关系, 结构要严谨, 表达要简明, 语义要确切. 数学专业的论文, 用简明的几句话说清楚论文的主要内容和结果即可, 不要有其他废话, 不需要按学校文件规定写200-300字.
+
+
+\addcontentsline{toc}{section}{关键词}
+\noindent {\heiti 关键词}:
+ 甲\   乙\   丙\  丁\   戊
+}
+
+
+\begin{center}
+{\sanhao\theEngTitle}
+\end{center}
+\begin{center}
+\theEnMajor \quad\quad\theEnName
+\end{center}
+\begin{center}
+Tutor\quad\quad\theEnTutor
+\end{center}
+
+{\wuhao
+\addcontentsline{toc}{section}{Abstract}
+\noindent{\bf Abstract}:
+Blabla ..........
+
+\addcontentsline{toc}{section}{Key words}
+\noindent{\bf Key words}:
+Aa;  Bb;  Cc;  Dd;  Ee
+
+}
+\vskip 1cm
+
+%-------------- 以下为正文部分 -----------------------------
+\section{引言}
+
+引言可分为三部分来写.
+
+ 第一部分阐述研究背景, 总结前人的工作和结果. 在文献\cite{Liang-Xu-Auto18}(注意这里对参考文献的交叉引用方法)中, 作者研究了.......
+%--------  在“参考文献”部分，给这条文献加了一标签 Liang-Xu-Auto18
+
+第二部分详细阐述本文研究的核心工作, 用了哪些技巧和理论工具, 研究了哪个问题, 得到了什么结果. 与前人的结果比较,  本文的创新点在哪里.
+
+第三部分阐述本文的主要结构. 在第2节做了什么, 在第3节做了什么.
+
+
+
+
+
+\section{一个一级标题, 自动编号}
+
+\subsection{一个二级标题, 自动编号}
+
+\subsubsection{一个三级标题, 自动编号}
+
+下面是一个定义. 将对应的\LaTeX{}环境命令里的definition换成theorem, lemma, proposition, corollary,example, remark,就得到定理、引理、命题、推论、例、注等)
+\begin{definition}[\cite{Liang-Xu-Auto18}]\label{Def: positive def matrix}
+%------\begin{definition}[引用的定义所在的参考文献的标签] \label{给这个定义设置一个标签}
+%----- 标签lable里的Def: positive def matrix是作者自己加上去的，为了方便交叉引用，加的标签最好有一定的意义，容易记忆
+$n$阶实对称矩阵$A$为正定的，如果它所对应的二次型$X^T A X$是正定的，即对任意非零的$n$维列向量$X$, 有$X^T A X>0$.
+\end{definition}
+
+根据定义\ref{Def: positive def matrix} (注意这里的交叉引用方法), 我们有......
+
+下面是性质，还有一个列表的使用例子，注意列表编号的格式。
+\begin{property}\label{Property: positive matrix}
+如果$A$和$B$都是正定矩阵, 则有:
+\begin{itemize}
+  \item[(1)]$A+B$是正定矩阵;
+  \item[(ii)]$kA$$(k>0)$是正定矩阵;
+  \item[(bla)]blablabla;
+  \item[1.]
+  \item[i.]
+  \item[A.]
+\end{itemize}
+\end{property}
+
+以下是一个引理。
+\begin{lemma}
+设$E:\Bbb{R}^+ \to \Bbb{R}^+$ ($\Bbb{R}^+=[0,+\infty)$)是一个单调递减的函数且存在常数$T>0$，使得
+$$\int_t^{\infty} E(s) \d s \leq TE(t),\quad \forall t\in \Bbb{R}^+,$$
+则
+$$E(t)\leq E(0) e^{1- \frac{t}{T}},\quad \forall t\geq T. $$
+\end{lemma}
+
+下面是一个定理及证明, 注意不等式(\ref{ineq-1})的交叉引用方法.
+\begin{theorem}
+设$E$是定义在$[0,\infty)$上的非负递减函数. 如果
+\begin{equation}\label{ineq-1}  %----- 标签lable里的ineq-1是作者自己加上去的，为了方便交叉引用，加的标签最好有一定的意义，容易记忆
+\int_S^{\infty} E(t) \d t \leq CE(S),\quad \forall S\geq S_0,
+\end{equation}
+其中$S_0$, $C$为固定常数, 则
+$$E(t)\leq E(0)e^{1-\frac{t}{S_0+C}},\quad \forall t\geq 0.$$
+\end{theorem}
+
+\begin{proof}
+若$0\leq S\leq S_0$, 由(\ref{ineq-1})式可知
+\begin{eqnarray*}
+% \nonumber to remove numbering (before each equation)
+  \int_S^{\infty} E(t)\d t &=& \int_S^{S_0} E(t)\d t +\int_{S_0}^{\infty} E(t)\d t\\
+  &\leq &(S_0-S) E(S)+CE(S_0)\\
+ &= &S_0 E(S) +CE(S)
+\end{eqnarray*}
+因此, 对$\forall S\geq 0$, 有
+$$\int_S^{\infty} E(t) \d t \leq  (S_0+C)E(S).$$
+由引理3得
+$$E(t)\leq E(0)e^{1-\frac{t}{S_0+C}},\quad \forall t\geq 0.$$
+\end{proof}
+\begin{remark}
+这里是一个注。
+\end{remark}
+
+\begin{theorem}[局部存在性与唯一性, \cite{Liang-Xu-Auto18}]  \label{Thm: local existence}
+ 假设\textbf{条件} 成立, 则存在依赖于初始二次能量~$\mathscr{E}(0)$ 的~$T>0$ 使得问题在时间区间~$(-\infty, T]$ 上有弱解. 另外, 我们有下面的能量恒等式成立:
+\begin{eqnarray}
+&&\mathscr{E}+\int_0^t\int_\Omega |u_t|^{m+1} \d x\d \tau-\frac12 \int_0^t\int_0^{-\infty}|\nabla w(\tau,s)|_2^2 \mu'(s)\d s\d \tau\nonumber\\
+&&=\mathscr{E}(0)+\int_0^t\int_\Omega |u|^{p-1}uu_t\d x\d\tau,\label{4 quadratic energy identity}
+\end{eqnarray}
+\end{theorem}
+
+\subsection{数学公式、符号的例子}
+
+行列式的例子
+\begin{equation*}
+  |\lambda E- A|=
+  \begin{vmatrix}
+   \lambda-a_{11} & -a_{12} & -a_{13}&\cdots &-a_{1n} \\
+    -a_{21} & \lambda-a_{22} & -a_{23} &\cdots & -a_{2n}\\
+    \vdots & \vdots & \vdots&\ddots&\vdots \\
+    -a_{n1} & -a_{n2} & -a_{n3} &\cdots& \lambda -a_{nn}
+ \end{vmatrix}
+\end{equation*}
+
+矩阵的例子
+\begin{equation*}
+A=(a_{ij})_{n\times n} =
+\begin{pmatrix}
+  a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+  a_{21} & a_{22} & a_{23} &\cdots & a_{2n}\\
+ \vdots & \vdots & \vdots & \ddots& \vdots\\
+ a_{n1} & a_{n2} & a_{n3} &\cdots & a_{nn}
+\end{pmatrix}
+\end{equation*}
+
+方程组的例子
+\begin{equation*}
+\left\{   %------ 定界符是大括号｛。 \left\{   与后面的\right. 对应
+    \begin{array}{l} %---  左对齐（l=left）
+      u_{tt}-\Delta u+|u_t|^{m-1}u_t=|u|^{p-1}u,\quad (x,t)\in \Bbb{R}^n\times (0,\infty),\\
+      u(0,x)=u_0(x),\quad u_t(x,0)=u_1(x),
+      \end{array}
+\right.
+\end{equation*}
+
+\begin{equation*}
+\left\{
+   \begin{array}{rl} %---- 分为两列，第一列右对齐（r=right），第二列左对齐（l=left）
+      -x & \text{if } x < 0,\\
+       0 & \text{if } x = 0,\\
+       x & \text{if } x > 0.
+\end{array}
+\right.
+\end{equation*}
+
+
+长公式
+\begin{eqnarray*}
+J(\psi_t(v);t)&=&\frac{p-2}{2p}(|\nabla \psi_t(v)|_2^2+b|\psi_t(v)|_2^2)+\frac1p I(\psi_t(v);t) \\
+                &=&\frac{p-2}{2p}s^2(v;t)\|v\|^2 \\
+                &=&\frac{p-2}{2p}(k(t))^{-\frac{2}{p-2}}\|v\|^{\frac{2p}{p-2}}.
+\end{eqnarray*}
+\begin{eqnarray*}
+  &       &\frac{\gamma_a^p\left(2\rho(0)\right)^{1-\frac{p}{2}}}{\left(p-2\right)k(T_3)}\leq T^* \\
+  &\leq & T_3:= \frac{8(p-1)(a\l_1+1)\rho(0)}{(p-2)^2[(p-2)(b+\l_1)\rho(0)-p(a\l_1+1)J(u_0;0)]};
+  \end{eqnarray*}
+
+
+ 一个具有斜线表头的表格
+ \begin{center}
+\begin{tabular}{|c|c|c|} %------ 三列的列表，每列都居中对齐
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  \diagbox{$X$}{$Y$} & $a$ & $b$ \\
+  \hline
+    $c$ & 1   &0 \\
+   \hline
+  $d$ & 0 &1 \\
+  \hline
+\end{tabular}
+ \end{center}
+
+
+\section{又一个一级标题 }
+
+下面是一个例
+\begin{example}
+  这是一个例子
+\end{example}
+
+
+
+
+%-------------------------------------
+\addcontentsline{toc}{section}{致谢} %---- 加入到目录中 -----
+\section*{\heiti\xiaosihao 致谢}
+
+本文的写作过程中,得到了李四老师的悉心指导与修改, 在此表示感谢.
+
+\addcontentsline{toc}{section}{参考文献}         %---- 将“参考文献”加入到目录中 ---
+\renewcommand\refname{\heiti \xiaosihao 参考文献}
+\begin{thebibliography}{100}
+\wuhao
+\bibitem{jiang-06}
+姜国. 正定矩阵的判定及性质[J]. 湖北师范学院学报(自然科学版), 2006(01): 97-100.
+
+\bibitem{LiLiqun-17}
+李立群. 正定矩阵及其应用[J]. 山东农业工程学院学报, 2017, 34(07): 28-30.
+
+\bibitem{Liang-Xu-Auto18}
+Xiao Liang, JuanJuan Xu. Control for networked control systems with remote and local controllers over unreliable communication channel[J]. Automatica, 2018, 98(2018): 86-94.
+
+
+\end{thebibliography}
+
+
+
+
+
+
+\end{document} 
