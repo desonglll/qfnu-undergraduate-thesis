@@ -7,3 +7,6 @@ date: 2023-04-13
 
 This is the template in latex format of QFNU-undergraduate-thesis.
 
+## Requirement
+
+Font: STFangsong, HeitiSC
